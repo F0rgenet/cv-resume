@@ -4,6 +4,19 @@
   box([#image(icon, width: 100pt)#value], fill: black.transparentize(90%))
 }
 
+#let entry(title: "", subtitle: "", description: "", start-date: "", end-date: "") = {
+  show: fonts.caption
+  title
+  show: fonts.caption-details
+  " — " + subtitle
+  show: fonts.text
+  description
+  h(1fr)
+  [#start-date - #end-date]
+}
+
+#let education(institition: "", city: "", degree: "", start-date: "", end-date: "") = entry(title: institition + " г." + city, subtitle: degree, start-date: start-date, end-date: end-date)
+
 #let header(name: "Иван", surname: "Иванов", jobs: ("Разработчик", ), phone: "72222222222", email: "ivan@ivan.com", location: "Москва, Россия") = {
   place()[#box(image("../static/background-light.png", width: 100%))]
   v(7%)
@@ -75,9 +88,8 @@
   pad(
     x: 50pt,
     grid(
-      stroke: black.transparentize(90%),
-      inset: (x: 0pt, y: 15pt),
-      columns: 2,
+      inset: (x: 0pt, y: 5pt),
+      columns: (1fr, 4fr),
       ..cells
     )
   )
